@@ -8,10 +8,8 @@ import time
 from datetime import datetime
 
 from aiohttp import web
-from aiohttp import Request
 
-
-def index(request: Request):
+def index(request):
     return web.Response(headers={'Content-Type': 'text/html'}, body=b'<h1>Hello World</h1>')
 
 
