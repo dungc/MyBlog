@@ -9,15 +9,17 @@ from datetime import datetime
 
 from aiohttp import web
 
+
 def index(request):
     return web.Response(headers={'Content-Type': 'text/html'}, body=b'<h1>Hello World</h1>')
 
 
-async def init(event_loop):
+@asyncio.coroutine
+def init(event_loop):
     app = web.Application(loop=event_loop)
     app.router.add_route('GET', '/', index)
     port = 9000
-    srv = await event_loop.create_server(app.make_handler(), '', port=port)
+    srv = yield from event_loop.create_server(app.make_handler(), '', port=port)
     info = 'Server started at http://127.0.0.1:%d' % 9000
     logging.info(info)
     return srv
