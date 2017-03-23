@@ -13,7 +13,7 @@ def index(request):
     return web.Response(headers={'Content-Type': 'text/html'}, body=b'<h1>Hello World</h1>')
 
 
-async def init(event_loop: AbstractEventLoop):
+async def init(event_loop):
     app = web.Application(loop=event_loop)
     app.router.add_route('GET', '/', index)
     port = 9000
